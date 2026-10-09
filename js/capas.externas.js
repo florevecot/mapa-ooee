@@ -98,7 +98,7 @@
       });
       this.teselas = new Teselas("", {
         tileSize: 512, zoomOffset: -1, minZoom: 1, maxZoom: 20,
-        opacity: cfg.opacidad ?? 0.85, attribution: cfg.atribucion || "", className: "capa-externa"
+        opacity: cfg.opacidad ?? 1, attribution: cfg.atribucion || "", className: "capa-externa"
       });
       // Si el servidor no entrega imágenes directo, se piden a través del proxy
       let errores = 0;
@@ -151,7 +151,7 @@
       const ymax = R - c.y * T * res, ymin = ymax - T * res;
       const u = conParams(`${this.url}/export`, {
         bbox: `${xmin},${ymin},${xmax},${ymax}`, bboxSR: 3857, imageSR: 3857,
-        size: `${T},${T}`, dpi: 96, format: "png32", transparent: true,
+        size: `${T},${T}`, dpi: 144, format: "png32", transparent: true,
         layers: `show:${[...this.visibles].join(",")}`, f: "image"
       });
       return this.imagenesViaProxy ? viaProxy(u) : u;
